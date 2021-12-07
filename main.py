@@ -267,42 +267,50 @@ def ubahharga():
                     break
 
 
-#MAIN
-while True :
-    clear()
-    sun()
-
-    m = input("\n== MAIN MENU SUN ====================\n 1) Barang Dagangan\n 2) Transaksi \n 3) Riwayat Transaksi \n 4) Reset \n 0) Selesai\n==========)  :")
-    m = removefirstendspaces(m)
-    if m == "1":
+#RUNNING
+def run():
+    while True :
         clear()
         sun()
-        while True :
+
+        m = input("\n== MAIN MENU SUN ====================\n 1) Barang Dagangan\n 2) Transaksi \n 3) Riwayat Transaksi \n 4) Reset \n 0) Selesai\n==========)  :")
+        m = removefirstendspaces(m)
+        if m == "1":
             clear()
             sun()
-            m = input("\n==MENU BARANG=======================\n 1) Input Barang\n 2) Cek Barang\n 3) Ubah Harga\n 4) Hapus Barang\n 0) Selesai\n==========)  : ")
-            m = removefirstendspaces(m)
-            if m == "1":
-                inputbarang()
-            elif m == "2":
-                liststockbarang()
-            elif m == "3":
-                ubahharga()
-            elif m == "4":
-                hapusbarang()
-            elif m == "0":
-                break
-    elif m == "2":
-        transaksi()
-    elif m == "3":
-        riwayat()
-    elif m == "4":
-        reset()
-    elif m == "0":
-        clear()
-        sun()
-        print("Terima kasih Telah Mencoba --SUN-- Versi 1.1 (Kelompok 2 Tugas Daspem)")
-        break
+            while True :
+                clear()
+                sun()
+                m = input("\n==MENU BARANG=======================\n 1) Input Barang\n 2) Cek Barang\n 3) Ubah Harga\n 4) Hapus Barang\n 0) Selesai\n==========)  : ")
+                m = removefirstendspaces(m)
+                if m == "1":
+                    inputbarang()
+                elif m == "2":
+                    liststockbarang()
+                elif m == "3":
+                    ubahharga()
+                elif m == "4":
+                    hapusbarang()
+                elif m == "0":
+                    break
+        elif m == "2":
+            transaksi()
+        elif m == "3":
+            riwayat()
+        elif m == "4":
+            reset()
+        elif m == "0":
+            clear()
+            sun()
+            print("Terima kasih Telah Mencoba --SUN-- Versi 1.1 (Kelompok 2 Tugas Daspem)")
+            break
+   
+   
+   
+   
+    #MAIN
+if __name__ == "__main__":
+    run() 
 
 
 
