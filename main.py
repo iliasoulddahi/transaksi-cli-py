@@ -7,7 +7,7 @@ tm = tm.strftime("%d %B %y")
 
 #tampilan
 def sun():
-    with open("total.txt",'r') as files:
+    with open("total.json",'r') as files:
         data = json.load(files)
         terjual = data["terjual"]
         alirandana = data["alirandana"]
@@ -60,7 +60,7 @@ def inputbarang():
         add[ltambahbarang] = tambahharga
         
     
-        with open("data.txt", "r+") as files:
+        with open("data.json", "r+") as files:
             data = json.load(files)
             data.update(add)
             files.seek(0)
@@ -75,7 +75,7 @@ def liststockbarang():
     while True:
         clear()
         sun()
-        with open('data.txt') as files:
+        with open('data.json') as files:
             data = json.load(files)
             print("\n==BARANG TERSEDIA======================= ")
             for j in data:
@@ -88,7 +88,7 @@ def liststockbarang():
         print("====================================")
 #TAMPILAN BARANG
 def listhargabarang():
-    with open('data.txt') as files:
+    with open('data.json') as files:
         data = json.load(files)
         print("==BARANG YANG TERSEDIA======================= ")
         for j in data:
@@ -102,12 +102,12 @@ def transaksi():
     totalb = "\n\n"
     jumlahb = 0
     #history
-    with open('total.txt','r+') as history_file:
+    with open('total.json','r+') as history_file:
         datahistory = json.load(history_file) 
     now = datetime.datetime.now()
     time = now
     yadd = f"\nTransaksi {time}"
-    with open('data.txt','r+') as files:
+    with open('data.json','r+') as files:
         data = json.load(files)
         while True:
             clear()
@@ -137,13 +137,13 @@ def transaksi():
                 if m == "2":
                     break 
                 elif m == "0":
-                    f = open("stock.txt",'a')
+                    f = open("catatan.txt",'a')
                     f.write(yadd)
                     f.close
                     datahistory["alirandana"] += totalbayar 
                     datahistory["terjual"] += jumlahb
                     #datahistory["terlaris"] =
-                    with open('total.txt','w') as history_file:
+                    with open('total.json','w') as history_file:
                         json.dump(datahistory, history_file)
 
                     break
@@ -162,20 +162,20 @@ def transaksi():
                     break
                 elif m == "0":
                     print(datahistory)
-                    f = open("stock.txt",'a')
+                    f = open("catatan.txt",'a')
                     f.write(yadd)
                     f.close
                     datahistory["alirandana"] += totalbayar 
                     datahistory["terjual"] += jumlahb
                     #datahistory["terlaris"] =
-                    with open('total.txt','w') as history_file:
+                    with open('total.json','w') as history_file:
                         json.dump(datahistory, history_file)
                     break
 #RIWAYAT
 def riwayat():
     clear()
     sun()
-    x = open("stock.txt",'r')
+    x = open("catatan.txt",'r')
     print(x.read())
     x.close
     m = input("0) Selesai\n==========)  :")
@@ -189,14 +189,14 @@ def reset():
     m = input("\n 1) Reset Semua Catatan Pembelian\n 0) Batal\n==========)  :")
     m = removefirstendspaces(m)
     if m == "1":
-        with open("total.txt",'r') as files:
+        with open("total.json",'r') as files:
             data = json.load(files)
             data["alirandana"] = 0
             data["terjual"] = 0
-        with open("total.txt",'w') as files:
+        with open("total.json",'w') as files:
             json.dump(data, files)
             
-        x = open("stock.txt",'w')
+        x = open("catatan.txt",'w')
         x.write = ""
         x.close
         clear()
@@ -218,11 +218,11 @@ def hapusbarang():
         hapus = input("\nNote!! Barang yang di input langsung terhapus\nNama Barang  : ")
         hapus = hapus.lower()
         removefirstendspaces(hapus)
-        with open("data.txt",'r+') as files:
+        with open("data.json",'r+') as files:
             data = json.load(files)
             dataget = data.pop(hapus, None)
             if dataget != None:
-                with open("data.txt",'w') as files:
+                with open("data.json",'w') as files:
                     json.dump(data, files)
                 print(" ( Telah Di Hapus)")
                 m = input("=====================\n 1) Hapus Barang Lagi?\n 0) Selesai\n==========)  :")
@@ -243,14 +243,14 @@ def ubahharga():
         print("========UBAH HARGA========")
         barang =input("Nama Barang  : ")
         barang = barang.lower()
-        with open("data.txt",'r+') as files:
+        with open("data.json",'r+') as files:
             data = json.load(files)
             dataget = data.get(barang)
             if dataget != None:
                 print(f"Harga Saat Ini Rp.{data[barang]}")
                 harga = get_int_harga()
                 data[barang] = harga
-                with open("data.txt",'w') as files:
+                with open("data.json",'w') as files:
                     json.dump(data , files)
                 print("(Berhasil Di Ubah)")
                 m = input("=====================\n 1) Ubah Lagi? \n 0) Selesai\n==========)  :")
