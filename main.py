@@ -302,7 +302,7 @@ def run():
         elif m == "0":
             clear()
             sun()
-            print("Terima kasih Telah Mencoba --SUN-- Versi 1.1 (Kelompok 2 Tugas Daspem)")
+            print("Terima kasih Telah Mencoba --SUN-- Versi 1.1")
             break
    
    
