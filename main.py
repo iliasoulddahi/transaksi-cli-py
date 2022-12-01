@@ -11,7 +11,7 @@ def sun():
         data = json.load(files)
         terjual = data["terjual"]
         alirandana = data["alirandana"]
-    print("====TUGAS DASPEM KELOMPOK 2====")
+    print("====TRANSACTION CLI 2====")
     print(f"|Hari Ini : {tm}|")
     print(f"|Total Penjualan : Rp. {alirandana}|Barang Terjual :{terjual}|")
    
